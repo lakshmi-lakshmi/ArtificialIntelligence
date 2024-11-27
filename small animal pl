@@ -1,0 +1,45 @@
+% Facts about animals
+dog(rover).
+dog(jane).
+dog(tom).
+dog(fred).
+dog(henry).
+dog(fido).
+
+cat(mary).
+cat(harry).
+cat(bill).
+cat(steve).
+
+% Facts about sizes
+small(henry).
+
+medium(harry).
+medium(fred).
+
+large(fido).
+large(mary).
+large(tom).
+large(fred).
+large(steve).
+large(jim).
+large(mike).
+
+% Rules to categorize animals by size
+small_animal(X) :- small(X).
+medium_animal(X) :- medium(X).
+large_animal(X) :- large(X).
+
+% Rule to check if an animal is both a dog and of a certain size
+dog_of_size(X, Size) :-
+    dog(X),
+    (Size = small, small(X);
+     Size = medium, medium(X);
+     Size = large, large(X)).
+
+% Rule to check if an animal is both a cat and of a certain size
+cat_of_size(X, Size) :-
+    cat(X),
+    (Size = small, small(X);
+     Size = medium, medium(X);
+     Size = large, large(X)).
