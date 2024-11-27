@@ -1,0 +1,16 @@
+% Facts
+american(robert).                % Robert is an American
+hostile(country_a).              % Country A is hostile
+owns_missiles(country_a).        % Country A has missiles
+sold(robert, missiles, country_a). % Robert sold missiles to Country A
+
+% Rules
+crime(X) :-
+    american(X),
+    sells_weapons_to_hostile(X).
+
+sells_weapons_to_hostile(X) :-
+    sold(X, missiles, Y),
+    hostile(Y).
+
+% Query to check if Robert is a criminal
