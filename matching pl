@@ -1,0 +1,11 @@
+% Facts: First and second names of individuals
+first_name(tonyblair, tony).
+first_name(georgebush, georgedubya).
+
+second_name(tonyblair, blair).
+second_name(georgebush, bush).
+
+% Rule to find both first and second names of an individual
+full_name(Person, First, Second) :-
+    first_name(Person, First),
+    second_name(Person, Second).
