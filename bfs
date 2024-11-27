@@ -1,14 +1,27 @@
-def bfs(graph, start, goal):
-    queue, visited = [start], {start}
+def bfs_with_path(graph, start, goal):
+    queue = [(start, [start])]
+    visited = set()
     while queue:
-        node = queue.pop(0)
+        node, path = queue.pop(0)
         if node == goal:
-            return True
+            return path
+        visited.add(node)
         for neighbor in graph.get(node, []):
             if neighbor not in visited:
-                queue.append(neighbor)
+                queue.append((neighbor, path + [neighbor]))
                 visited.add(neighbor)
-    return False
+    return None
 
-graph = {'A': ['B', 'C'], 'B': ['D', 'E'], 'C': ['F'], 'D': [], 'E': ['F'], 'F': []}
-print("Path found!" if bfs(graph, 'A', 'F') else "No path found.")
+graph = {
+    'A': ['B', 'C'],
+    'B': ['D', 'E'],
+    'C': ['F'],
+    'D': [],
+    'E': ['F'],
+    'F': []
+}
+
+start_node = 'A'
+goal_node = 'F'
+path = bfs_with_path(graph, start_node, goal_node)
+print(f"Path found: {' -> '.join(path)}" if path else "No path found.")
