@@ -1,25 +1,15 @@
-% Define the vowels
 vowel(a).
 vowel(e).
 vowel(i).
 vowel(o).
 vowel(u).
 
-% Base case: empty list has 0 vowels
 vowel_count([], 0).
-
-% Recursive case: If the head is a vowel, increment the count
 vowel_count([H|T], N) :-
-    vowel(H),  % Check if H is a vowel
-    vowel_count(T, N1),  % Recursively count the rest of the list
-    N is N1 + 1.
+    (vowel(H) -> N1 is 1; N1 is 0),
+    vowel_count(T, N2),
+    N is N1 + N2.
 
-% Recursive case: If the head is not a vowel, continue counting
-vowel_count([H|T], N) :-
-    \+ vowel(H),  % H is not a vowel
-    vowel_count(T, N).
-
-% Convert the sentence into a list of characters and count vowels
-count_vowels_in_sentence(Sentence, N) :-
-    string_chars(Sentence, CharList),  % Convert sentence to a list of characters
-    vowel_count(CharList, N).          % Count vowels in the character list
+count_vowels(Sentence, N) :-
+    string_chars(Sentence, CharList),
+    vowel_count(CharList, N).
