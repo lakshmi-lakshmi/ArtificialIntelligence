@@ -1,0 +1,4 @@
+person('John','Doe',male,30,'engineer').
+person('Jane',Smith,female,25,'doctor').
+details(FName,Name,Sex,Age,Occ):-
+person(FName,Name,Sex,Age,Occ).
