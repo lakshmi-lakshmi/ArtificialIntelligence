@@ -1,0 +1,7 @@
+% Facts about people
+man(socrates).
+man(einstein).
+man(alexander).
+
+% Rule to determine if a person is mortal
+mortal(X) :- man(X).
