@@ -1,0 +1,12 @@
+% Base case: true is always interpreted (stops further processing).
+interpret(true) :- !.
+
+% Case for conjunction (GoalA and GoalB): interpret both goals.
+interpret((GoalA, GoalB)) :- 
+    !, 
+    interpret(GoalA), 
+    interpret(GoalB).
+
+% Recursively interpret a single goal.
+interpret(GoalA) :- 
+    GoalA.
